@@ -1,0 +1,41 @@
+<mat-card class="input-container w-100 flex-1 flex flex-col">
+    <button #file mat-flat-button color="primary">Subir archivo...
+        <input multiple [accept]="'image/*'" (change)="onFileSelected($event)" style="opacity: 0; position:absolute; left:0px; top:0px; width:100%; height:100%;" type="file"/>
+    </button>
+</mat-card>
+<div style="max-height: 200px; overflow-y: auto;">
+    @for (file of files(); track $index) {
+        <div class="flex justify-between items-center mx-5 py-3 ">
+            <div class="flex items-center">
+                <img class="cursor-zoom-in" [src]="getUrl(file)" width="100" height="100" alt="" (click)="openImgModal(file)">
+                <p class="ms-5">
+                    {{file.name}}
+                </p>
+            </div>
+            <close-btn (click)="deleteFile(file)"/>
+        </div>
+        <mat-divider></mat-divider>
+    }
+
+    @for (url of imageUrls; track $index) {
+      <div class="flex justify-between items-center mx-5 py-3 ">
+          <div class="flex items-center">
+              <img class="cursor-zoom-in" [src]="url" width="100" height="100" alt="" (click)="openImgModalUrl(url)">
+              <p class="ms-5">{{ url.split('/').pop() }}</p>
+          </div>
+          <close-btn (click)="deleteImageUrl(url)"/>
+      </div>
+      <mat-divider></mat-divider>
+    }
+</div>
+
+@if (imgModal()) {
+    <div (click)="closeImgModal()" class="absolute left-0 top-0 h-screen w-screen flex justify-center items-center" style="background-color: rgba(0, 0, 0, 0.5); z-index: 10;">
+        <div class="bg-white p-20 rounded-lg relative m-3">
+            <p class="hover:bg-gray-200 cursor-pointer absolute py-2 px-4 rounded-xl right-3 top-3 font-bold text-lg text-gray-600">
+                ✕
+            </p>
+            <img [src]="this.imgModalSrc()" alt="">
+        </div>
+    </div>
+}

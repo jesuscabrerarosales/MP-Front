@@ -1,0 +1,112 @@
+<div class="p-5">
+  <div class="w-full grid grid-cols-2 gap-4">
+    <div>
+      <search-bar class="w-full pb-6" maxWidth="none" placeholder="Buscar Galería"
+      [value]="searchQuery"
+      (input)="updateSearchQuery($event)"/>
+    </div>
+    <div class="flex justify-end">
+      <create-btn text="Crear Galería" to="crear" />
+    </div>
+  </div>
+
+  <div class="mt-6">
+    @if(isSearching){
+    <ng-container>
+      @if(galeriasSVS().length > 0){
+      <div>
+        <div class="grid grid-cols-1 gap-4 mt-4">
+          @for(galeria of galeriasSVS(); track $index){
+
+          <h2 class="text-orange-400 my-5 text-3xl cursor-pointer select-none" (click)="toggleGaleria(galeria.idMercado)">
+            {{ galeria.nombreMercado }}
+            <mat-icon color="primary">
+              {{ currentGaleriaId === galeria.idMercado ? 'arrow_drop_up' : 'arrow_drop_down' }}
+            </mat-icon>
+          </h2>
+
+          @if(currentGaleriaId === galeria.idMercado){
+            @if(loading()){
+              <div class="flex justify-center p-5">
+                <loader />
+              </div>
+            }
+          }
+          @if(!loading()){
+          <div class="flex-shrink-0 w-96 bg-orange-50 border cursor-pointer border-gray-300 rounded-lg shadow-sm flex" [routerLink]="['edit', galeria.id]">
+            <div class="w-2/3 p-2">
+              <p class="font-bold text-lg truncate">{{ galeria.nombre }}</p>
+              <p class="text-gray-600 truncate">{{ galeria.categoria }}</p>
+            </div>
+            <div class="w-1/3 flex items-center">
+              <img [src]="galeria.ruta" alt="Galeria Imagen" class="w-full h-auto max-h-20 object-cover rounded-md">
+            </div>
+          </div>
+          }
+        }
+        </div>
+      </div>
+      }@else{
+      <ng-template #noResults>
+        <div class="p-5 text-center">
+          No se encontraron galerías para la búsqueda "{{ searchQuery }}".
+        </div>
+      </ng-template>
+    }
+    </ng-container>
+    }
+    @if(!isSearching){
+    <ng-container>
+      @if(mercados().length > 0){
+      <div>
+        @for(mercado of mercados(); track $index){
+        <ng-container>
+          <h2 class="text-orange-400 my-5 text-3xl cursor-pointer select-none" (click)="loadGalerias(mercado.id)">
+            {{ mercado.nombre }}
+            <mat-icon color="primary">
+              {{ currentMercadoId() === mercado.id ? 'arrow_drop_up' : 'arrow_drop_down' }}
+            </mat-icon>
+          </h2>
+          @if(currentMercadoId() === mercado.id){
+          <div>
+            @if(loading()){
+            <div>
+              <div class="flex justify-center p-5">
+                <loader />
+              </div>
+            </div>
+            }
+            <div class="grid grid-cols-1 gap-4 mt-4">
+              @if(!loading() && galeriasFiltered().length > 0){
+              @for(galeria of galeriasFiltered(); track $index){
+              <div class="flex-shrink-0 w-96 bg-orange-50 border cursor-pointer border-gray-300 rounded-lg shadow-sm flex" [routerLink]="['edit', galeria.id]">
+                <div class="w-2/3 p-2">
+                  <p class="font-bold text-lg truncate">{{ galeria.nombre }}</p>
+                  <p class="text-gray-600 truncate">{{ galeria.categoria }}</p>
+                </div>
+                <div class="w-1/3 flex items-center">
+                  <img [src]="galeria.ruta" alt="Galeria Imagen" class="w-full h-auto max-h-20 object-cover rounded-md">
+                </div>
+              </div>
+              }
+              }
+            </div>
+            @if(!loading() && galeriasFiltered().length === 0){
+            <div class="p-5 text-center">
+              No se encontraron galerías para este mercado.
+            </div>
+            }
+          </div>
+          }
+        </ng-container>
+        }
+      </div>
+      }@else{
+      <ng-template #noMercados>
+        <h1>No hay mercados disponibles.</h1>
+      </ng-template>
+      }
+    </ng-container>
+    }
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<button
+    class="sidebar-container flex w-full py-5 px-6 cursor-pointer my-2"
+    style="border-radius: 40px;"
+    [routerLink]="to"
+    routerLinkActive="sb-item-active"
+    [routerLinkActiveOptions]="{exact: exact}"
+    (click)="onclick()"
+    type="button"
+    >
+    <span class="material-symbols-outlined">
+        {{icon}}
+    </span>
+    <p class="ms-3" style="font-size: 17px;">
+        {{text}}
+    </p>
+    @if (qty != 0) {
+        <p class="ms-auto">
+            <b>
+                {{qty}}
+            </b>
+        </p>
+    }
+</button>

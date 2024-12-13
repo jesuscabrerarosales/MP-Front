@@ -1,0 +1,66 @@
+<form [formGroup]="createGaleriaForm" (ngSubmit)="onSubmit()" class="h-full">
+    <createform-layout title="Editar Galería">
+        <div class="w-1/2 px-3">
+            <mat-form-field class="w-full">
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="distrito">
+                @for (distrito of distritos(); track distrito.id){
+                  <mat-option [value]="distrito.id"> {{ distrito.nombre }} </mat-option>
+                }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field class="w-full">
+                <mat-label>Mercado</mat-label>
+                <mat-select formControlName="mercado">
+                  @for (mercado of mercados(); track mercado.id) {
+                    <mat-option [value]="mercado.id">{{mercado.nombre}}</mat-option>
+                }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Dirección / Ubicación</mat-label>
+            <input matInput placeholder="Escriba aquí..." formControlName="direccion">
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Nombre de la galería</mat-label>
+            <input matInput placeholder="Escriba aquí..." formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="w-full px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Descripcion</mat-label>
+            <textarea
+            matInput placeholder="Escriba aquí..."
+            formControlName="descripcion">
+            </textarea>
+            <mat-error>
+              @if(createGaleriaForm.get('descripcion')?.hasError('maxlength')){
+                La descripción no puede exceder los 500 caracteress
+              }
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="w-full px-3 mb-4">
+            <upload-files [imageUrls]="imageUrls" (onFilesAndUrlsChange)="updateFilesAndUrls($event)"></upload-files>
+        </div>
+        @if(error()) {
+            <p class="text-red-500 w-full text-center mb-3">Hubo un error al editar la galería</p>
+        }
+        @if(success()) {
+            <p class="text-green-500 w-full text-center mb-3">Galería editada correctamente</p>
+        }
+        <div class="w-full flex justify-center items-center">
+            @if(loading()) {
+                <loader />
+            } @else {
+                <styled-btn type="submit">Editar</styled-btn>
+            }
+        </div>
+    </createform-layout>
+</form>

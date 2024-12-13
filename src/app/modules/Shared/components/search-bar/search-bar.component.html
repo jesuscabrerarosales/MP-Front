@@ -1,0 +1,6 @@
+<div class="search-container" [ngStyle]="{'max-width': maxWidth}">
+    <input matInput type="text" (keydown.enter)="onSearchValue()" [(ngModel)]="value" [placeholder]="placeholder">
+    <button matSuffix mat-icon-button aria-label="Search" (click)="onSearchValue()" class="flex items-center outline-none">
+        <mat-icon color="primary">search</mat-icon>
+    </button>
+</div>

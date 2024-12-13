@@ -1,0 +1,38 @@
+<h4 class="text-orange-400 text-lg font-bold mb-4">Puestos de Mercados ({{puestos().length}})</h4>
+
+<div class="cards-container">
+    @for (puesto of puestos(); track $index) {
+        <puesto-card>
+            <div class="flex justify-end gap-4 mt-8">
+                <styled-btn [outlined]="true">Declinar</styled-btn>
+                <styled-btn >Aceptar</styled-btn>
+            </div>
+        </puesto-card>
+    }
+</div>
+
+<h4 class="text-orange-400 text-lg font-bold mb-4">Galerías ({{galerias().length}})</h4>
+
+<div class="cards-container">
+    @for (galeria of galerias(); track $index) {
+        <puesto-card>
+            <div class="flex justify-end gap-4 mt-8">
+                <styled-btn [outlined]="true">Declinar</styled-btn>
+                <styled-btn >Aceptar</styled-btn>
+            </div>
+        </puesto-card>
+    }
+</div>
+
+<h4 class="text-orange-400 text-lg font-bold mb-4">Mercados ({{mercados().length}})</h4>
+
+<div class="cards-container">
+    @for (mercado of mercados(); track $index) {
+        <puesto-card>
+            <div class="flex justify-end gap-4 mt-8">
+                <styled-btn [outlined]="true">Declinar</styled-btn>
+                <styled-btn >Aceptar</styled-btn>
+            </div>
+        </puesto-card>
+    }
+</div>

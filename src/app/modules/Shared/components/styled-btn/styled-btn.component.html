@@ -1,0 +1,10 @@
+<ng-template #projected>
+    <ng-content/>
+</ng-template>
+
+@if (outlined) {
+    <button mat-stroked-button color="primary" [type]="type" (onclick)="onclick"><ng-container *ngTemplateOutlet="projected" /></button>
+} @else {
+    <button mat-flat-button color="primary" [type]="type" (onclick)="onclick"><ng-container *ngTemplateOutlet="projected" /></button>
+}
+

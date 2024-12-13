@@ -1,0 +1,33 @@
+<div class="container mx-auto my-5 flex flex-col items-stretch px-5">
+  <search-bar class="flex-1" maxWidth="none" (onSearch)="search($event)" placeholder="Buscar Puestos..." />
+
+  <div class="p-5">
+    <span class="text-xl underline text-orange-400">Resultados para:</span>
+    <span class="text-xl text-black"> {{busqueda}} </span>
+  </div>
+
+  @if (!loading() && puestos().length > 0) {
+    <h6 class="p-5 w-full text-center text-orange-400 text-3xl md:text-4xl underline">
+      {{ mercadoName }}
+    </h6>
+  }
+
+  @if(loading()) {
+    <div class="flex px-10 justify-center  flex-shrink-0" >
+      <loader/>
+    </div>
+  } @else {
+    @if (puestos().length === 0) {
+      <div class="p-5">
+        <span>No se encontraron resultados.</span>
+      </div>
+    }
+    <div class="w-full flex flex-wrap justify-center gap-10">
+      @for (puesto of puestos(); track puesto.puestoId) {
+      <div (click)="onCardClick(puesto.puestoId)" class="cursor-pointer">
+        <puesto-card [puesto]="puesto"></puesto-card>
+      </div>
+      }
+    </div>
+  }
+</div>

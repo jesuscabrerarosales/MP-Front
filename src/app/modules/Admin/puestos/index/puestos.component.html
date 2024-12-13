@@ -1,0 +1,20 @@
+<div class="w-full grid grid-cols-2 gap-4">
+  <div>
+    <search-bar class="w-full pb-6" maxWidth="none" placeholder="Buscar Puesto" (onSearch)="buscarPuestos($event)"/>
+  </div>
+  <div class="flex justify-end">
+    <create-btn text="Crear Puesto" to="crear" />
+  </div>
+</div>
+
+<div class="">
+  <div class="flex flex-wrap">
+    @for(puesto of puesto(); track puesto.puestoId){
+      <puesto-card class="p-5" [puesto]="puesto" [routerLink]="['edit', puesto.puestoId]">
+        <div class="flex justify-end gap-4">
+          <styled-btn [outlined]="true">Editar</styled-btn>
+        </div>
+      </puesto-card>
+    }
+  </div>
+</div>

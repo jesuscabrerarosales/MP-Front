@@ -1,0 +1,33 @@
+.search-container{
+    height: 55px;
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    background-color: #F0ECE6;
+    border-radius: 100px;
+
+    padding-right: 16px;
+    margin: 0 auto;
+}
+
+.search-container:hover{
+    background-color: #e2ded8;
+}
+
+.search-container input{
+    all: unset;
+    min-width: 0;
+    font-size: 17px;
+    padding-left: 25px;
+    flex: 1;
+    background-color: transparent;
+    min-height: 100%;
+    color: rgb(34, 31, 28);
+    caret-color: var(--color-primary);
+}
+
+::placeholder {
+    color: #49454f;
+    opacity: 1; /* Firefox */
+}

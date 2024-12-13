@@ -1,0 +1,59 @@
+<main class="flex layout-container">
+    <sidebar-panel name="Panel Administrador">
+        <sidebar-item
+            icon="home"
+            text="Home"
+            to="/admin/"
+            [exact]="true"
+        />
+        <sidebar-item
+            icon="bottom_app_bar"
+            text="Pendientes"
+            to="/admin/pendientes"
+        />
+
+        <div class="h-separator"></div>
+
+        <sidebar-item
+            icon="storefront"
+            text="Puestos"
+            to="/admin/puestos"
+        />
+        <sidebar-item
+            icon="home_work"
+            text="Galerías"
+            to="/admin/galerias"
+        />
+        <sidebar-item
+            icon="location_city"
+            text="Mercados"
+            to="/admin/mercados"
+        />
+
+        <div class="h-separator"></div>
+
+        <sidebar-item
+            icon="search"
+            text="Buscador"
+            to="/admin/buscador"
+        />
+        <sidebar-item
+            icon="groups"
+            text="Vendedores"
+            to="/admin/vendedores"
+        />
+
+        <div class="h-separator"></div>
+
+        <sidebar-item
+            icon="logout"
+            text="Salir"
+            [onclick]="adminService.clearToken"
+            to="/admin/login"
+        />
+    </sidebar-panel>
+    <div class="p-8 px-10 w-full" style="overflow-y: auto;">
+        <router-outlet/>
+    </div>
+</main>
+

@@ -1,0 +1,45 @@
+<div class="container p-5 mx-auto my-5 flex flex-col items-stretch">
+  <div class="flex flex-col md:flex-row pt-5">
+
+    <div class="w-full h-96 md:w-1/4 mb-4 md:mb-0">
+      <img [src]="imagenSplit()" alt="Puesto Imagen" class="w-full h-full object-cover rounded-3xl">
+    </div>
+
+    <div class="w-full md:w-3/4 pl-5 flex flex-col">
+      <div class="mb-5">
+        <h2 class="text-3xl underline text-orange-400 pt-5 mb-2">{{ puestoInfoSignal()?.puestoNombre }}</h2>
+        <p class="pt-5 text-lg text-gray-600">{{ puestoInfoSignal()?.puestoDescripcion }}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <p class="text-base font-medium">Ubicación: {{ puestoInfoSignal()?.ubicacion }}</p>
+          <p class="text-base font-medium">Galería: {{ puestoInfoSignal()?.galeriaNombre }}</p>
+          <p class="text-base font-medium mt-2">Mercado: {{ puestoInfoSignal()?.mercadoNombre }}</p>
+        </div>
+        <div>
+          <img src="assets/ex.png" alt="Imagen Referencial" class="w-full h-auto object-cover rounded-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-10 flex justify-center gap-4 md:gap-48">
+    <div>
+      <p class="text-xl underline text-orange-400">Productos / Servicios:</p>
+
+        <li class="text-base font-medium">{{ puestoInfoSignal()?.productos }}</li>
+    </div>
+    <div>
+      <p class="text-xl underline text-orange-400">Actividad del negocio:</p>
+      <p class="text-base font-medium">{{ puestoInfoSignal()?.actividad }}</p>
+    </div>
+  </div>
+
+
+  <div class="w-full pt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    @for(imageUrl of puestoInfoSignal()?.imageUrls; track $index) {
+      <img [src]="imageUrl" alt="Puesto Imagen" class="w-full h-full object-cover rounded-lg">
+    }
+  </div>
+</div>

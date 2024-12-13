@@ -1,0 +1,33 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <a routerLink="" class="self-start text-orange-400 font-bold"> ← Ir a home</a>
+    <div class="text-center mb-8">
+      <img routerLink="/" src="assets/logo.png" alt="Logo" class="w-60 mx-auto">
+      <p class="text-sm text-gray-500">Panel Administrador</p>
+    </div>
+    <form (ngSubmit)="login()">
+      <div class="mb-4">
+        <label for="username" class="block text-gray-700">Usuario</label>
+        <input id="username" type="text" [(ngModel)]="username" name="username" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-400">
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700">Contraseña</label>
+        <input id="password" type="password" [(ngModel)]="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-400">
+      </div>
+      @if (error()) {
+      <div class="text-center mb-6 text-red-600">
+        <p>Error usuario o contraseña incorrectos</p>
+      </div>
+      }
+      <!--<button routerLink="/admin/pendientes" type="submit" class="w-full bg-orange-400 text-white py-2 rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400">Ingresar</button>-->
+      @if (loading()) {
+        <div class=" flex w-full justify-center">
+          <loader></loader>
+        </div>
+      }@else {
+        <button  type="submit" class="w-full bg-orange-400 text-white py-2 rounded hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400">Ingresar</button>
+
+      }
+    </form>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.cards-container{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 2em;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}

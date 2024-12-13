@@ -1,0 +1,22 @@
+<div class="w-full py-3 px-5 navbar-container">
+    <img (click)="onChangeRoute()" src="/assets/logo.png" height="100" width="120" alt="" routerLink="/" class="cursor-pointer" draggable="false">
+    <div class="btn-container">
+        <button (click)="toggleContent()" data-collapse-toggle="navbar-default" type="button" class="flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-orange-200 ring-2 ring-gray-300 focus:outline-none focus:ring-orange-400" aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+    </div>
+    <div class="navbar-content" [class.hidden-collapse]="hideContent()">
+        <div class="links-container">
+            <a>Quienes Somos</a>
+            <a routerLink="distritos" routerLinkActive="active" (click)="onChangeRoute()">Distritos</a>
+            <a>Contactenos</a>
+        </div>
+
+    </div>
+    <div class="search-bar-container">
+      <search-bar (onSearch)="search($event)"/>
+    </div>
+</div>

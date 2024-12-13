@@ -1,0 +1,16 @@
+<div class="rounded-lg border-gray-400 border p-5 cursor-pointer" style="min-width: 300px; max-width: 400px;" [routerLink]="redirectToPage ? '/mercado/'+mercado.id : null">
+    <div class="flex justify-center items-center" style="height: 400px;">
+        <img class="w-full h-full object-cover" [src]="sanitizedImageUrl()" alt="">
+    </div>
+    <h1 class="text-lg my-1">
+        {{mercado.name}}
+    </h1>
+
+    <h4 class="font-bold mb-1">
+        {{mercado.distritoName}}
+    </h4>
+
+    <small class="text-gray-400 text-sm">
+        ({{mercado.qtyGalerias}}) Galerías
+    </small>
+</div>

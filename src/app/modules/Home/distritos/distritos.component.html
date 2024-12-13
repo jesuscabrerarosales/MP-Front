@@ -1,0 +1,37 @@
+<div class="p-5">
+    <div class="flex">
+        <search-bar placeholder="Filtrar Distrito..." (keyup)="onChangeFilter($event)"/>
+    </div>
+    <div class="ps-2">
+        @for (distrito of distritosFiltered(); track $index) {
+            <h2 class="text-orange-400 text-3xl my-5 cursor-pointer select-none" (click)="loadMercadosByDistritoId(distrito.id)">
+                {{distrito.nombre | lowerCapitalize}}
+                <mat-icon color="primary">
+                    @if (this.currentDistritoId() == distrito.id) {
+                        arrow_drop_up
+                    } @else {
+                        arrow_drop_down
+                    }
+                </mat-icon>
+            </h2>
+            @if (currentDistritoId() == distrito.id){
+                @if(loading()) {
+                    <div class="flex px-10 justify-center  flex-shrink-0" >
+                      <loader/>
+                    </div>
+                } @else {
+                    <div class="flex flex-wrap">
+                        @if(mercadosByDistrito().length === 0) {
+                            <div class="p-5">
+                              <span>No se encontraron mercados.</span>
+                            </div>
+                        }
+                        @for (mercado of mercadosByDistrito(); track $index) {
+                            <mercado-card class="p-5" [mercado]="mercado"/>
+                        }
+                    </div>
+                } 
+            }
+        }
+    </div>
+</div>

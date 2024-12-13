@@ -1,0 +1,10 @@
+.input-container{
+    cursor: pointer;
+    background-color: #F5F5F5;
+    color: #5E5E5E;
+    padding: 15px;
+}
+
+.input-container:hover{
+    background-color: #ededed;
+}

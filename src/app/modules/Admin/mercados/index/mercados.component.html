@@ -1,0 +1,17 @@
+<div class="w-full grid grid-cols-2 gap-4">
+  <div>
+    <search-bar class="w-full pb-6" maxWidth="none" placeholder="Buscar Mercado" (onSearch)="searchMercadosByName($event)"/>
+  </div>
+  <div class="flex justify-end">
+    <create-btn text="Crear Mercado" to="crear" />
+  </div>
+</div>
+
+<div class="flex overflow-x-auto space-x-5 p-10 cursor-grab" #slider id="mercados-container">
+  <div class="flex px-10  flex-shrink-0" >
+      @for (mercado of lastMercados(); track mercado.id) {
+        <mercado-card class="p-5" [mercado]="mercado" [redirectToPage]="false" [routerLink]="['edit', mercado.id]" />
+      }
+  </div>
+</div>
+

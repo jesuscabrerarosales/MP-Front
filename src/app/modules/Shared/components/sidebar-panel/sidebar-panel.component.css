@@ -1,0 +1,15 @@
+.scroll-thin{
+    direction:ltr;
+}
+
+.scroll-thin::-webkit-scrollbar {
+    width: 0px;
+    height: 15px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+}
+    

@@ -1,0 +1,26 @@
+
+<div class="p-5">
+    <span class="text-xl underline text-orange-400">Resultados para:</span>
+    <span class="text-xl text-black"> {{busqueda}} </span>
+</div>
+
+@if(isLoading()) {
+  <div class="flex px-10 justify-center  flex-shrink-0" >
+    <loader/>
+  </div>
+} @else {
+  <div class="flex px-10 flex-wrap justify-center" >
+    @for (mercado of resultados(); track mercado.id) {
+        <mercado-card class="p-5" [mercado]="mercado" />
+    }
+</div>
+}
+
+
+
+
+@if(!isLoading() && resultados().length === 0) {
+  <div class="p-5">
+    <span>No se encontraron resultados.</span>
+  </div>
+}

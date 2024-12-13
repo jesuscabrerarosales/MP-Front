@@ -1,0 +1,80 @@
+<form [formGroup]="createPuestoForm" (ngSubmit)="onSubmit()" class="h-full">
+    <createform-layout title="Crear Puesto">
+        <div class="w-1/2 px-3">
+            <mat-form-field class="w-full">
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="distrito">
+                @for (distrito of distritos(); track distrito.id){
+                  <mat-option [value]="distrito.id"> {{ distrito.nombre }} </mat-option>
+                }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field class="w-full">
+                <mat-label>Mercado</mat-label>
+                <mat-select formControlName="mercado">
+                @for (mercado of mercados(); track mercado.id) {
+                    <mat-option [value]="mercado.id">{{mercado.nombre}}</mat-option>
+                }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field class="w-full">
+                <mat-label>Galería</mat-label>
+                <mat-select formControlName="galeria">
+                @for (galeria of galerias(); track galeria.id) {
+                    <mat-option [value]="galeria.id">{{galeria.nombre}}</mat-option>
+                }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Ubicación del Negocio</mat-label>
+            <input matInput placeholder="Escriba aquí..." formControlName="ubicacion">
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Nombre del Puesto</mat-label>
+            <input matInput placeholder="Escriba aquí..." formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Nombre Completo del Dueño</mat-label>
+            <input matInput placeholder="Escriba aquí..." formControlName="dueno">
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Productos</mat-label>
+            <textarea matInput placeholder="Escriba aquí..." formControlName="productos"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="w-1/2 px-3">
+            <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Actividad</mat-label>
+            <textarea matInput placeholder="Escriba aquí..." formControlName="actividad"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="w-full px-3 mb-4">
+            <upload-files />
+        </div>
+        @if(error()) {
+            <p class="text-red-500 w-full text-center mb-3">Hubo un error al crear el puesto</p>
+        }
+        @if(success()) {
+            <p class="text-green-500 w-full text-center mb-3">Puesto creado correctamente</p>
+        }
+        <div class="w-full flex justify-center items-center">
+            @if(loading()) {
+                <loader />
+            } @else {
+                <styled-btn type="submit">Crear</styled-btn>
+            }
+        </div>
+    </createform-layout>
+</form>
